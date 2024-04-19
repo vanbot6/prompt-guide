@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Prompt Engineering | NateBot AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+    <nav class="animate__animated animate__fadeInDown">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chapter1.html">Understanding Generative AI</a></li>
+            <li><a href="chapter2.html">Introduction to Prompt Engineering</a></li>
+            <li><a href="chapter3.html">Text-Based Content Creation</a></li>
+            <li><a href="chapter4.html">Image Generation</a></li>
+            <li><a href="chapter5.html">Other Use Cases</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <main>
+       <section id="intro" class="animate__animated animate__fadeIn">
+            <div class="intro-content">
+                <h1 class="glitch" data-text="Introduction to Prompt Engineering">Introduction to Prompt Engineering</h1>
+                <p>Prompt engineering is the process of designing and optimizing input prompts to guide generative AI models towards producing desired outputs. It involves crafting clear, specific, and well-structured prompts that effectively communicate the user's intent to the AI model.</p>
+                <a href="#examples" class="btn btn-glow">See Examples</a>
+            </div>
+            <div class="intro-image">
+                <img src="images/prompt-engineering.png" alt="Prompt Engineering" 
+            </div>
+        </section>
+
+        <section id="examples" class="animate__animated animate__fadeInUp">
+            <h2>Examples of Well-Crafted and Poorly Crafted Prompts</h2>
+            <div class="example-grid">
+                <div class="example">
+                    <h3>Well-Crafted Prompt</h3>
+                    <p>"Write a 500-word blog post discussing the benefits of meditation for mental health. Include a brief introduction, three main points, and a conclusion. Use a friendly, informative tone and target an audience of beginners."</p>
+                    <p class="explanation">This prompt provides clear instructions on the topic, length, structure, tone, and target audience, giving the AI model sufficient guidance to generate a high-quality blog post.</p>
+                </div>
+                <div class="example">
+                    <h3>Poorly Crafted Prompt</h3>
+                    <p>"Write something about health."</p>
+                    <p class="explanation">This prompt is too vague and lacks guidance on the specific aspect of health to focus on, the desired format, length, or target audience. The AI model may generate content that is irrelevant or fails to meet the user's expectations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="key-components" class="animate__animated animate__fadeInUp">
+            <h2>Key Components of a Well-Crafted Prompt</h2>
+            <ul>
+                <li>
+                    <h3>Clear and Specific Instructions</h3>
+                    <p>Provide unambiguous guidance on what the model should generate, including the desired format, style, and length.</p>
+                </li>
+                <li>
+                    <h3>Relevant Context</h3>
+                    <p>Include any necessary background information, examples, or constraints that help the model understand the task and generate appropriate content.</p>
+                </li>
+                <li>
+                    <h3>Explicit Constraints</h3>
+                    <p>Specify any limitations or requirements, such as avoiding certain topics, maintaining a particular tone, or adhering to specific guidelines.</p>
+                </li>
+                <li>
+                    <h3>Structured Format</h3>
+                    <p>Present the prompt in a clear and organized manner, using formatting techniques like bullet points, numbered lists, or separators to improve readability and understanding.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="limitations" class="animate__animated animate__fadeInUp">
+            <h2>Understanding the Limitations of AI Models</h2>
+            <p>While generative AI models are powerful tools, it's essential to understand their limitations to set realistic expectations and design effective prompts. Some key limitations include:</p>
+            <ul>
+                <li>Lack of true understanding: AI models do not have a deep, human-like understanding of the world and may sometimes generate content that is factually incorrect, inconsistent, or nonsensical.</li>
+                <li>Dependence on training data: The quality and diversity of the generated content are largely determined by the model's training data. Models may reflect biases or limitations present in their training data.</li>
+                <li>Inability to reason or make judgments: AI models cannot make moral or ethical judgments and may generate content that is inappropriate, offensive, or harmful if not properly guided by the prompt.</li>
+            </ul>
+        </section>
+        <section id="prompt-grader" class="animate__animated animate__fadeInUp">
+            <h2>Prompt Grading Tool</h2>
+            <p>Enter a prompt below to get feedback on its quality:</p>
+            <textarea id="prompt-input" rows="4" cols="50"></textarea>
+            <button id="grade-prompt" class="btn btn-glow">Grade Prompt</button>
+            <div id="prompt-feedback"></div>
+        </section>
+		<div class="pagination">
+    <a href="chapter1.html" class="btn btn-previous">Previous</a>
+    <a href="chapter3.html" class="btn btn-next">Next</a>
+</div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 NateBot. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const promptInput = document.getElementById('prompt-input');
+            const gradePromptBtn = document.getElementById('grade-prompt');
+            const promptFeedback = document.getElementById('prompt-feedback');
+
+            gradePromptBtn.addEventListener('click', function () {
+                const prompt = promptInput.value;
+                const grade = gradePrompt(prompt);
+                promptFeedback.textContent = `Prompt Grade: ${grade}`;
+            });
+
+            function gradePrompt(prompt) {
+                // Check if the prompt meets the key components of a well-crafted prompt
+                const isClearAndSpecific = prompt.length >= 20 && prompt.includes(' ');
+                const hasRelevantContext = prompt.length >= 50;
+                const hasExplicitConstraints = prompt.includes('avoid') || prompt.includes('include') || prompt.includes('limit');
+                const isStructured = prompt.includes('\n') || prompt.includes(';') || prompt.includes(',');
+
+                if (isClearAndSpecific && hasRelevantContext && hasExplicitConstraints && isStructured) {
+                    return 'Awesome';
+                } else if (isClearAndSpecific && (hasRelevantContext || hasExplicitConstraints) && isStructured) {
+                    return 'OK';
+                } else {
+                    return "Let's try again";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
